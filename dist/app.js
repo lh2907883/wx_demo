@@ -38,6 +38,8 @@ App({
     }
 });
 
+var wxp = require('./utils/wxp.js');
+
 function sleep(time, arg) {
     console.log('sleep start at:' + new Date());
     return new Promise(function (resolve) {
@@ -80,7 +82,7 @@ function fuck() {
 }
 
 function fucku(arg) {
-    var arg1, arg2;
+    var arg1, arg2, res;
     return regeneratorRuntime.wrap(function fucku$(_context2) {
         while (1) {
             switch (_context2.prev = _context2.next) {
@@ -98,10 +100,28 @@ function fucku(arg) {
                     arg2 = _context2.t0;
 
                     console.log('fuck() return:' + arg2);
-                    // throw new Error('error test');
+                    _context2.next = 9;
+                    return wxp('showModal', {
+                        title: 'showModal',
+                        content: '还想再来一次吗?',
+                        confirmText: '再来一次',
+                        cancelText: '结束吧'
+                    });
+
+                case 9:
+                    res = _context2.sent;
+
+                    if (!res.confirm) {
+                        _context2.next = 12;
+                        break;
+                    }
+
+                    return _context2.delegateYield(fucku(arg), 't1', 12);
+
+                case 12:
                     return _context2.abrupt('return', arg1);
 
-                case 8:
+                case 13:
                 case 'end':
                     return _context2.stop();
             }
@@ -110,9 +130,6 @@ function fucku(arg) {
 }
 co(fucku('hahaha')).then(function (data) {
     console.log(data);
-    wx.showToast({
-        title: 'everything is ok!'
-    });
 }).catch(function (error) {
     console.error(error);
 });

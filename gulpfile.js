@@ -32,7 +32,7 @@ gulp.task('babel', function() {
     return gulp.src('src/**/*.js')
         .pipe(changed('dist'))
         .pipe(babel({
-            presets: ['es2015']
+            presets: ['es2015', 'stage-0']
         }))
         .pipe(async4wx({
             root: __dirname,
@@ -80,4 +80,4 @@ gulp.task('watch', function() {
 gulp.task('build', ['copy', 'less', 'babel', 'npm']);
 
 // 默认任务
-gulp.task('default', ['watch', 'copy', 'less', 'babel', 'npm']);
+gulp.task('default', ['watch', 'build']);
