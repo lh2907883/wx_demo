@@ -101,7 +101,7 @@ function fucku(arg) {
 
                     console.log('fuck() return:' + arg2);
                     _context2.next = 9;
-                    return wxp('showModal', {
+                    return wxp(wx.showModal, {
                         title: 'showModal',
                         content: '还想再来一次吗?',
                         confirmText: '再来一次',

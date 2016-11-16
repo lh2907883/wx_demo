@@ -1,4 +1,4 @@
-module.exports = function(apiName, arg) {
+module.exports = function(api, arg) {
     var obj = {...arg };
     return new Promise(function(resolve, reject) {
         obj.success = resolve;
@@ -9,6 +9,6 @@ module.exports = function(apiName, arg) {
                 reject(res);
             }
         };
-        wx[apiName](obj);
+        api.call(wx, obj);
     });
 }

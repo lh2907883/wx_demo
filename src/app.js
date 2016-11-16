@@ -53,7 +53,7 @@ function* fucku(arg) {
     console.log('fuck haha')
     var arg2 = yield* fuck();
     console.log('fuck() return:' + arg2);
-    var res = yield wxp('showModal', {
+    var res = yield wxp(wx.showModal, {
         title: 'showModal',
         content: '还想再来一次吗?',
         confirmText: '再来一次',
